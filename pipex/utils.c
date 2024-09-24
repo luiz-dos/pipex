@@ -87,6 +87,8 @@ void	execute_command(char *av, char **envp)
 		exit(127);
 	}
 	execve(command_path, cmd, envp);
+	free_array(cmd);
+	free(command_path);
 	perror("execve");
 	exit(1);
 }
