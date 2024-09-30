@@ -26,7 +26,6 @@ void	handle_dev_random(void)
 		if (total_bytes >= 1024)
 			break ;
 	}
-	exit(0);
 }
 
 int	only_space_av(char *str)
