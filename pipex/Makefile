@@ -5,7 +5,7 @@ CFLAGS	= -Wall -Wextra -Werror -I./include
 RM		= rm -f
 CREATE	= ar rcs
 LIBFT	= libft
-SRCS	= main.c utils.c execute_command.c
+SRCS	= main.c utils.c utils2.c execute_command.c
 OBJS	= ${SRCS:.c=.o}
 
 all: ${NAME}
