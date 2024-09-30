@@ -25,7 +25,10 @@ void	child_process(int *fd, char **av, char **envp)
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd_in);
 	close_fds(fd);
-	execute_command(av[2], envp);
+	if (ft_strncmp(av[1], "/dev/random", 11) == 0)
+		handle_dev_random();
+	else
+		execute_command(av[2], envp);
 }
 
 void	parent_process(int *fd, char **av, char **envp)
@@ -47,6 +50,7 @@ int	main(int ac, char **av, char **envp)
 	int	fd[2];
 	int	pid;
 
+	check_envp(envp);
 	if (ac == 5)
 	{
 		if (pipe(fd) == -1)
