@@ -12,20 +12,6 @@
 
 #include "pipex.h"
 
-int	find_in_envp(char **envp)
-{
-	int	i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_strnstr(envp[i], "PATH", 4))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*get_command_path(char *cmd, char **envp)
 {
 	char	**all_paths;
@@ -60,8 +46,7 @@ void	execute_command(char *av, char **envp)
 	char	**cmd;
 	char	*command_path;
 
-	if (!find_in_envp(envp))
-		exit(1);
+	check_commands(av);
 	cmd = ft_split(av, ' ');
 	if (!cmd)
 		return ;
