@@ -41,11 +41,30 @@ void	free_array(char **array)
 	free(array);
 }
 
+int	find_in_envp(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strnstr(envp[i], "PATH", 4))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void	check_envp(char **envp)
 {
 	if (!envp || !*envp)
 	{
 		ft_putstr_fd("pipex: environment not found\n", 2);
+		exit(1);
+	}
+	if (!find_in_envp(envp))
+	{
+		ft_putstr_fd("pipex: PATH variable not found\n", 2);
 		exit(1);
 	}
 }
