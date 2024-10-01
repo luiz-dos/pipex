@@ -19,13 +19,17 @@ void	handle_dev_random(void)
 	int		total_bytes;
 
 	total_bytes = 0;
-	while ((bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer))) > 0)
+	while (1)
 	{
+		bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer));
+		if (bytes_read <= 0)
+			break ;
 		write(STDOUT_FILENO, buffer, bytes_read);
 		total_bytes += bytes_read;
 		if (total_bytes >= 1024)
 			break ;
 	}
+	exit(0);
 }
 
 int	only_space_av(char *str)
